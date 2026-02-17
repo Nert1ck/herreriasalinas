@@ -1,0 +1,38 @@
+INSTRUCCIONES PARA EL PANEL DE ADMINISTRADOR
+================================================
+
+ACCESO AL PANEL ADMIN:
+1. Busca el botón "Admin" en la esquina superior derecha de cualquier página
+2. Haz clic en el botón
+3. Ingresa la contraseña: herreria2025
+4. Se recargar la página y verás un botón "Salir Admin" en la esquina superior derecha
+
+CREAR/CAMBIAR CONTRASEÑA:
+- Para cambiar la contraseña del admin, abre el archivo "admin.js"
+- Busca la línea: this.adminPassword = 'herreria2025';
+- Cambia 'herreria2025' por tu nueva contraseña
+- Guarda el archivo
+
+AÑADIR NUEVOS TRABAJOS (Solo en Catálogo):
+1. Accede al panel de admin (ver arriba)
+2. Dirígete a la página del Catálogo
+3. Verás un botón azul adicional "+ Añadir Trabajo" en la galería
+4. Haz clic en él para abrir el formulario
+5. Completa:
+   - Tipo de contenido (Imagen o Video)
+   - URL de la imagen/video (ej: images/mi-trabajo.jpg)
+   - Descripción del trabajo
+6. Haz clic en "Agregar"
+7. El trabajo se agregará a la galería (guarda en localStorage - es local solo)
+
+NOTAS IMPORTANTES:
+- Los trabajos agregados se almacenan en localStorage de tu navegador
+- Si limpias el caché del navegador, se perderán los trabajos agregados
+- Para hacer cambios permanentes, edita directamente los archivos HTML
+- La sesión de admin dura hasta que cierres el navegador
+- Solo puedes agregar trabajos en la página de Catálogo
+
+ARCHIVOS IMPORTANTES:
+- admin.js: Sistema de administración y autenticación
+- style.css: Estilos principales (ahora con texto blanco en main para mejor contraste)
+- catalogo.html, servicios.html, etc: Páginas principales
