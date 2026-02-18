@@ -430,9 +430,10 @@ footer p {
     .tarjeta video {
         width: 100%;
         max-width: 100%;
-        height: auto;
-        object-fit: cover;
+        height: 320px;
+        object-fit: contain;
         border-radius: 8px;
+        background: #222;
     }
 
     .tarjeta .info {
