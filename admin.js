@@ -350,6 +350,7 @@ class AdminSystem {
         const tarjeta = document.createElement('div');
         tarjeta.className = 'tarjeta';
 
+
         let contentHTML = '';
         if (type === 'image') {
             contentHTML = `<img src="${url}" alt="${description}" class="tarjeta-media">`;
@@ -357,21 +358,38 @@ class AdminSystem {
             contentHTML = `<video src="${url}" class="tarjeta-media" controls autoplay muted loop></video>`;
         }
 
+        // Botón de ampliar solo para imágenes
+        let ampliarBtn = '';
+        if (type === 'image') {
+            ampliarBtn = `<button class="btn-ampliar" title="Ampliar imagen" style="position:absolute;top:10px;right:10px;z-index:10;background:#e76f51;color:#fff;border:none;border-radius:50%;width:38px;height:38px;font-size:1.5rem;cursor:pointer;box-shadow:0 2px 8px #0007;">&#128269;</button>`;
+        }
+
         tarjeta.innerHTML = `
-            ${contentHTML}
+            <div style="position:relative;">
+                ${contentHTML}
+                ${ampliarBtn}
+            </div>
             <div class="info">${description}</div>
         `;
 
-        // Expande la tarjeta al hacer clic
+        // Evento para ampliar imagen
+        if (type === 'image') {
+            tarjeta.querySelector('.btn-ampliar').addEventListener('click', function(ev) {
+                ev.stopPropagation();
+                const media = tarjeta.querySelector('.tarjeta-media');
+                if (media.requestFullscreen) {
+                    media.requestFullscreen();
+                } else if (media.webkitRequestFullscreen) {
+                    media.webkitRequestFullscreen();
+                } else if (media.msRequestFullscreen) {
+                    media.msRequestFullscreen();
+                }
+            });
+        }
+
+        // Expande la tarjeta al hacer clic (solo para videos o fallback)
         tarjeta.addEventListener('click', function(e) {
-            // Si es imagen y en móvil, usar pantalla completa
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            const media = tarjeta.querySelector('.tarjeta-media');
-            if (type === 'image' && isMobile && media && media.requestFullscreen) {
-                media.requestFullscreen();
-                e.stopPropagation();
-                return;
-            }
+            if (type === 'image') return;
             tarjeta.classList.toggle('tarjeta-expandida');
         });
 
