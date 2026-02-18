@@ -363,7 +363,15 @@ class AdminSystem {
         `;
 
         // Expande la tarjeta al hacer clic
-        tarjeta.addEventListener('click', function() {
+        tarjeta.addEventListener('click', function(e) {
+            // Si es imagen y en móvil, usar pantalla completa
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const media = tarjeta.querySelector('.tarjeta-media');
+            if (type === 'image' && isMobile && media && media.requestFullscreen) {
+                media.requestFullscreen();
+                e.stopPropagation();
+                return;
+            }
             tarjeta.classList.toggle('tarjeta-expandida');
         });
 

@@ -234,13 +234,14 @@ main strong {
     outline-offset: 2px;
 }
 
-.tarjeta img,
-.tarjeta video {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-}
+                .tarjeta img,
+                .tarjeta video {
+                    width: 100%;
+                    height: 220px;
+                    object-fit: contain;
+                    display: block;
+                    background: #222;
+                }
 
 .tarjeta .info {
     padding: 1rem;
@@ -358,17 +359,37 @@ footer p {
 @media screen and (max-width: 768px) {
                 .tarjeta-expandida {
                     z-index: 100;
-                    position: relative;
-                    transform: scale(1.15);
-                    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    transform: none;
+                    box-shadow: 0 12px 32px rgba(0,0,0,0.7);
                     border: 4px solid #e76f51;
+                    background: rgba(0,0,0,0.95);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 0;
+                    transition: all 0.3s cubic-bezier(.4,2,.6,1);
                 }
                 .tarjeta-expandida .tarjeta-media {
-                    width: 100%;
-                    max-width: 100%;
-                    height: 350px;
+                    width: 95vw;
+                    max-width: 95vw;
+                    height: 70vh;
+                    max-height: 70vh;
                     object-fit: contain;
                     border-radius: 10px;
+                    background: #222;
+                }
+                .tarjeta-expandida .info {
+                    color: #fff;
+                    background: none;
+                    font-size: 1.1rem;
+                    margin-top: 1rem;
+                    text-shadow: 2px 2px 8px #000;
                 }
             .tarjeta {
                 border: 3px solid #e76f51;
