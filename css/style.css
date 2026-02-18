@@ -356,6 +356,9 @@ footer p {
 }
 
 @media screen and (max-width: 768px) {
+            .tarjeta {
+                border: 3px solid #e76f51;
+            }
         /* Sin modal presentación */
     * {
         margin: 0;
