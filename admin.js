@@ -250,8 +250,8 @@ class AdminSystem {
                 </div>
 
                 <div style="margin-bottom: 1rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">URL de la imagen/video:</label>
-                    <input type="text" id="work-url" placeholder="Ej: images/nuevo-trabajo.jpg" style="
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Imagen/Video:</label>
+                    <input type="file" id="work-file" accept="image/*,video/*" style="
                         width: 100%;
                         padding: 10px;
                         border: 1px solid #ddd;
@@ -310,28 +310,38 @@ class AdminSystem {
     // Agregar trabajo a la galería
     addWork(modal) {
         const contentType = document.getElementById('content-type').value;
-        const url = document.getElementById('work-url').value;
+        const fileInput = document.getElementById('work-file');
         const description = document.getElementById('work-description').value;
 
-        if (!url || !description) {
+        if (!fileInput.files.length || !description) {
             alert('Por favor complete todos los campos');
             return;
         }
 
-        // Guardar en localStorage
-        let works = JSON.parse(localStorage.getItem('customWorks')) || [];
-        works.push({
-            type: contentType,
-            url: url,
-            description: description,
-            timestamp: new Date().getTime()
-        });
-        localStorage.setItem('customWorks', JSON.stringify(works));
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const url = e.target.result;
+            // Guardar en localStorage
+            let works = JSON.parse(localStorage.getItem('customWorks')) || [];
+            works.push({
+                type: contentType,
+                url: url,
+                description: description,
+                timestamp: new Date().getTime()
+            });
+            localStorage.setItem('customWorks', JSON.stringify(works));
 
-        // Agregar a la página
-        this.displayNewWork(contentType, url, description);
-        modal.remove();
-        alert('Trabajo agregado exitosamente');
+            // Agregar a la página
+            this.displayNewWork(contentType, url, description);
+            modal.remove();
+            alert('Trabajo agregado exitosamente');
+        };
+        if (file.type.startsWith('image/') || file.type.startsWith('video/')) {
+            reader.readAsDataURL(file);
+        } else {
+            alert('Solo se permiten imágenes o videos');
+        }
     }
 
     // Mostrar nuevo trabajo
@@ -342,9 +352,9 @@ class AdminSystem {
 
         let contentHTML = '';
         if (type === 'image') {
-            contentHTML = `<img src="${url}" alt="${description}" style="width: 100%; height: 250px; object-fit: cover;">`;
+            contentHTML = `<img src="${url}" alt="${description}" style="width: 100%; max-width: 100%; height: auto; object-fit: cover;">`;
         } else {
-            contentHTML = `<video src="${url}" style="width: 100%; height: 250px; object-fit: cover;" controls autoplay muted loop></video>`;
+            contentHTML = `<video src="${url}" style="width: 100%; max-width: 100%; height: auto; object-fit: cover;" controls autoplay muted loop></video>`;
         }
 
         tarjeta.innerHTML = `

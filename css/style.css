@@ -428,7 +428,11 @@ footer p {
 
     .tarjeta img,
     .tarjeta video {
-        height: 180px;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 8px;
     }
 
     .tarjeta .info {
@@ -439,6 +443,7 @@ footer p {
     img, video {
         max-width: 100%;
         height: auto;
+        object-fit: cover;
     }
 
     .whatsapp-btn {
