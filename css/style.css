@@ -431,13 +431,19 @@ footer p {
         display: block;
         width: 100%;
         max-width: 100%;
-        height: 520px;
-        object-fit: cover;
+        height: auto;
+        object-fit: contain;
         border-radius: 12px;
-        background: #222;
         margin-bottom: 0.5rem;
         margin-left: auto;
         margin-right: auto;
+    }
+    .tarjeta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: none;
     }
     .tarjeta {
         display: flex;
