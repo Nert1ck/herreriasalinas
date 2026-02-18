@@ -352,31 +352,15 @@ class AdminSystem {
 
         let contentHTML = '';
         if (type === 'image') {
-            contentHTML = `<img src="${url}" alt="${description}" class="tarjeta-media">`;
+            contentHTML = `<img src="${url}" alt="${description}" style="width: 100%; max-width: 100%; height: auto; object-fit: cover;">`;
         } else {
-            contentHTML = `<video src="${url}" class="tarjeta-media" controls autoplay muted loop></video>`;
+            contentHTML = `<video src="${url}" style="width: 100%; max-width: 100%; height: auto; object-fit: cover;" controls autoplay muted loop></video>`;
         }
 
         tarjeta.innerHTML = `
             ${contentHTML}
             <div class="info">${description}</div>
         `;
-
-        // Evento para mostrar modal
-        tarjeta.addEventListener('click', function() {
-            const modal = document.createElement('div');
-            modal.className = 'modal-presentacion';
-            modal.innerHTML = `
-                <div class="modal-content-presentacion">
-                    ${type === 'image' ? `<img src="${url}" alt="${description}" style="width: 100%; max-width: 600px; height: auto; object-fit: contain; border-radius: 12px;">` : `<video src="${url}" style="width: 100%; max-width: 600px; height: auto; object-fit: contain; border-radius: 12px;" controls autoplay muted loop></video>`}
-                    <div style="margin-top: 1rem; color: #333; font-size: 1.1rem;">${description}</div>
-                    <button style="margin-top: 1rem; padding: 8px 20px; background: #264653; color: #fff; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer;">Cerrar</button>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            modal.querySelector('button').addEventListener('click', () => modal.remove());
-            modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
-        });
 
         galeria.appendChild(tarjeta);
     }
