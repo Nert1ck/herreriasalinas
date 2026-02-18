@@ -429,22 +429,21 @@ footer p {
 
     .tarjeta img,
     .tarjeta video {
-        display: block;
         width: 100%;
-        max-width: 100%;
-        height: auto;
-        object-fit: contain;
-        border-radius: 12px;
-        margin-bottom: 0.5rem;
-        margin-left: auto;
-        margin-right: auto;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px 10px 0 0;
     }
     .tarjeta {
+        background: linear-gradient(135deg, #e76f51, #cc6231);
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: none;
     }
     .tarjeta {
         display: flex;
