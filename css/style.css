@@ -422,18 +422,19 @@ footer p {
     }
 
     .galeria {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .tarjeta img,
     .tarjeta video {
         width: 100%;
         max-width: 100%;
-        height: 320px;
+        height: 420px;
         object-fit: contain;
-        border-radius: 8px;
+        border-radius: 12px;
         background: #222;
+        margin-bottom: 0.5rem;
     }
 
     .tarjeta .info {
