@@ -352,15 +352,20 @@ class AdminSystem {
 
         let contentHTML = '';
         if (type === 'image') {
-            contentHTML = `<img src="${url}" alt="${description}" style="width: 100%; max-width: 100%; height: auto; object-fit: cover;">`;
+            contentHTML = `<img src="${url}" alt="${description}" class="tarjeta-media">`;
         } else {
-            contentHTML = `<video src="${url}" style="width: 100%; max-width: 100%; height: auto; object-fit: cover;" controls autoplay muted loop></video>`;
+            contentHTML = `<video src="${url}" class="tarjeta-media" controls autoplay muted loop></video>`;
         }
 
         tarjeta.innerHTML = `
             ${contentHTML}
             <div class="info">${description}</div>
         `;
+
+        // Expande la tarjeta al hacer clic
+        tarjeta.addEventListener('click', function() {
+            tarjeta.classList.toggle('tarjeta-expandida');
+        });
 
         galeria.appendChild(tarjeta);
     }
