@@ -358,12 +358,34 @@ class AdminSystem {
             contentHTML = `<video src="${url}" class="tarjeta-media" controls autoplay muted loop></video>`;
         }
 
+        // Solo permitir eliminar tarjetas agregadas por el usuario (identificadas por url base64)
+        let eliminarBtn = '';
+        if (url.startsWith('data:')) {
+            eliminarBtn = `<button class="btn-eliminar" title="Eliminar" style="position:absolute;top:10px;left:10px;z-index:10;background:#c0392b;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 8px #0007;">&#10006;</button>`;
+        }
+
         tarjeta.innerHTML = `
             <div style="position:relative;">
                 ${contentHTML}
+                ${eliminarBtn}
             </div>
             <div class="info">${description}</div>
         `;
+
+        // Evento para eliminar tarjeta agregada por el usuario
+        if (url.startsWith('data:')) {
+            tarjeta.querySelector('.btn-eliminar').addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                if (confirm('¿Seguro que deseas eliminar este trabajo?')) {
+                    // Eliminar del DOM
+                    tarjeta.remove();
+                    // Eliminar del localStorage
+                    let works = JSON.parse(localStorage.getItem('customWorks')) || [];
+                    works = works.filter(w => w.url !== url);
+                    localStorage.setItem('customWorks', JSON.stringify(works));
+                }
+            });
+        }
 
         // Expande la tarjeta al hacer clic (solo para videos o fallback)
         tarjeta.addEventListener('click', function(e) {
