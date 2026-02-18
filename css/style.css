@@ -237,10 +237,11 @@ main strong {
                 .tarjeta img,
                 .tarjeta video {
                     width: 100%;
-                    height: 340px;
+                    height: 2000px;
                     object-fit: contain;
                     display: block;
                     background: #222;
+                }
                 }
 
 .tarjeta .info {
@@ -470,7 +471,7 @@ footer p {
                 .tarjeta img,
                 .tarjeta video {
                     width: 100%;
-                    height: 1000px;
+                    height: 2000px;
                     object-fit: contain;
                     display: block;
                     background: #222;
